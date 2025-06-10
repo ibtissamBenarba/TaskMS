@@ -1,17 +1,151 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Symfony{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+    
+    <style>
+        /* Global Body Styles */
+    body {
+        background: linear-gradient(to bottom, #dce3f1, #f1f4fa);
+        background-attachment: fixed;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+    /* Form Control */
+    .form-control {
+        box-shadow: none;
+        border: 1px solid #ccd0da;
+        border-radius: 5px;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Focus Styles for Inputs */
+    .form-control:focus {
+        border-color: #94a3c4;
+        box-shadow: 0 0 5px rgba(146, 163, 196, 0.5);
+    }
+
+    /* Button Styles */
+    
+    /* Global Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px; /* Reduced padding for smaller size */
+    border-radius: 5px;
+    font-size: 14px; /* Adjusted font size */
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, box-shadow 0.2s ease;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: auto; /* Allow button to size according to content */
+    text-align: center;
+}
+
+/* Primary Button (for actions like create, login) */
+.btn-primary {
+    background: linear-gradient(90deg, #6c81a0, #94a3c4);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #94a3c4, #6c81a0);
+}
+
+/* Danger Button (for actions like delete) */
+.btn-danger {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+}
+
+/* Warning Button (for actions like update) */
+.btn-warning {
+    background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+
+.btn-warning:hover {
+    background: linear-gradient(90deg, #e67e22, #f39c12);
+}
+
+
+    /* Card Styles */
+    .card {
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Fade In Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Padding and Margin Adjustments for Task List */
+    ul.list-group {
+        margin-top: 20px;
+        padding-left: 0;
+    }
+
+    .list-group-item {
+        border: none;
+        padding: 15px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Hover effect for list items */
+    .list-group-item:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Badge Styles for Task Status */
+    .badge-success {
+        background-color: #28a745;
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+    }
+
+</style>
+
+<!-- Font Awesome CDN -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="container">
         {% block body %}{% endblock %}
-    </body>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% block javascripts %}{% endblock %}
+</body>
 </html>

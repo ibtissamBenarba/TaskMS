@@ -1,0 +1,10 @@
+{% for task in tasks %}
+    <div>
+        <h3>{{ task.title }}</h3>
+        <p>Due Date: {{ task.date|date('Y-m-d') }}</p>
+        <p>Status: {{ task.isDone ? 'Completed' : 'Not Completed' }}</p>
+        <a href="{{ path('task_toggle', {id: task.id}) }}">Toggle Status</a>
+        <a href="{{ path('task_edit', {id: task.id}) }}">Edit</a>
+        <a href="{{ path('task_delete', {id: task.id}) }}">Delete</a>
+    </div>
+{% endfor %}

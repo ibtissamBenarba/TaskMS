@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task Details{% endblock %}
+
+{% block body %}
+    <!-- Title outside the container -->
+    <h1 class="text-center mb-4" style="color: #4e4e77; margin-top: 50px;">Task Details</h1>
+
+    <!-- Container for Task Details -->
+    <div class="container d-flex justify-content-center align-items-center" style="margin-top: 50px">
+        <!-- Card for Task Details -->
+        <div class="card shadow p-4" style="width: 500px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.95);">
+            
+            <!-- Task Title inside the card -->
+            <h2 class="text-center" style="color: #4e4e77; margin-bottom: 30px;">{{ task.title }}</h2>
+
+            <!-- Task Description -->
+            <p class="text-center" style="color: #4e4e77; margin-bottom: 10px;"><strong>Description:</strong> {{ task.description }}</p>
+
+            <!-- Task Due Date -->
+            {% if task.date %}
+                <p class="text-center" style="color: #4e4e77; margin-bottom: 20px;">
+                    <strong>Due Date:</strong> {{ task.date|date('F j, Y') }}
+                </p>
+            {% else %}
+                <p class="text-center" style="color: #4e4e77; margin-bottom: 20px;">
+                    <strong>Due Date:</strong> Not set
+                </p>
+            {% endif %}
+
+            <!-- Task Status -->
+            <p class="text-center" style="color: #4e4e77; margin-bottom: 20px;">
+                <strong>Status:</strong> 
+                {% if task.isDone %}
+                    <span style="color: green; font-weight: bold;">Completed</span>
+                {% else %}
+                    <span style="color: red; font-weight: bold;">Pending</span>
+                {% endif %}
+            </p>
+
+            
+
+            <!-- Buttons section with reduced space between Update and Delete -->
+            <div class="d-flex justify-content-center" style="margin-top: 10px;">
+                <!-- Button to go to the task edit page -->
+                <a href="{{ path('task_edit', {id: task.id, userId: userId}) }}" class="btn btn-warning" style="font-size: 14px; padding: 5px 15px; border-radius: 5px; margin-right: 10px;">Update Task</a>
+
+                <!-- Delete button with confirmation -->
+                <form method="post" action="{{ path('task_delete', {id: task.id, userId: userId}) }}" style="display:inline;" onsubmit="return confirmDelete()">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ task.id) }}">
+                    <button type="submit" class="btn btn-danger" style="font-size: 14px; padding: 5px 15px; border-radius: 5px; margin-left: 10px;">Delete Task</button>
+                </form>
+            </div>
+
+            <br>
+
+            <div class="text-center mt-0">
+                <a href="{{ path('task_index', {userId: userId}) }}" style="color: #6c81a0; text-decoration: none; font-weight: bold;">Back to Task List</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        // JavaScript function to show a confirmation alert before deleting a task
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this task?');
+        }
+    </script>
+{% endblock %}

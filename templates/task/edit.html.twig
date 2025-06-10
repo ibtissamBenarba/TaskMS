@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Task{% endblock %}
+
+{% block body %}
+    <!-- Title outside the container -->
+    <h1 class="text-center mb-4" style="color: #4e4e77; margin-top: 30px; font-family: 'Arial', sans-serif;">Edit Task</h1>
+
+    <!-- Container for Task Edit Form -->
+    <div class="container d-flex justify-content-center align-items-center">
+        <!-- Card for Task Edit Form -->
+        <div class="card shadow p-4" style="width: 500px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.95);">
+
+            <!-- Form Start -->
+            {{ form_start(form) }}
+
+            <!-- Task Title -->
+            <div class="mb-3">
+                <label class="form-label" style="color: #4e4e77; font-weight: bold; font-family: 'Arial', sans-serif;">Task Title:</label>
+                {{ form_widget(form.title) }}
+            </div>
+
+            <!-- Task Description -->
+            <div class="mb-3">
+                <label class="form-label" style="color: #4e4e77; font-weight: bold; font-family: 'Arial', sans-serif;">Description:</label>
+                {{ form_widget(form.description) }}
+            </div>
+
+            <!-- Task Date -->
+            <div class="mb-3">
+                <label class="form-label" style="color: #4e4e77; font-weight: bold; font-family: 'Arial', sans-serif;">Due Date:</label>
+                {{ form_widget(form.date) }}
+            </div>
+
+            <!-- Task Status (Is Done) -->
+            <div class="mb-3">
+                <label class="form-label" style="color: #4e4e77; font-weight: bold; font-family: 'Arial', sans-serif;">Status:</label>
+                {{ form_widget(form.isDone) }}
+            </div>
+
+            <!-- Submit button with Bootstrap class for styling -->
+            <button type="submit" class="btn btn-primary w-100" style="font-weight: bold; padding: 10px;">Update Task</button>
+
+            {{ form_end(form) }}
+
+            <br>
+
+            <div class="text-center mt-3">
+                <!-- Link to go back to the task list -->
+                <a href="{{ path('task_index', {userId: userId}) }}" style="color: #6c81a0; text-decoration: none; font-weight: bold;">Back to Task List</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Task{% endblock %}
+
+{% block body %}
+    <!-- Title outside the container -->
+    <h1 class="text-center mb-4" style="color: #4e4e77; margin-top: 50px;">Create Task</h1>
+
+    <!-- Container for Task Edit Form -->
+    <div class="container d-flex justify-content-center align-items-center">
+        <!-- Card for Task Edit Form -->
+        <div class="card shadow p-4" style="width: 500px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.95);">
+
+            <!-- Start of the form -->
+            {{ form_start(form) }}
+
+            <div class="mb-3">
+                <!-- Display form widget for task edit (includes title, description, etc.) -->
+                {{ form_widget(form) }}
+            </div>
+
+            <!-- Submit button with Bootstrap class for styling -->
+            <button type="submit" class="btn btn-primary w-100" style="font-weight: bold; padding: 10px;">Save Task</button>
+
+            {{ form_end(form) }}
+
+            <br>
+
+            <div class="text-center mt-3">
+                <!-- Link to go back to the task list -->
+                <a href="{{ path('task_index', {userId: userId}) }}" style="color: #6c81a0; text-decoration: none; font-weight: bold;">Back to Task List</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
